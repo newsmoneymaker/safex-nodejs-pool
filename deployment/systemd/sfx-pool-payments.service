@@ -1,0 +1,17 @@
+[Unit]
+Description=SafexCash pool: payment processor (sendmany from the pool wallet; emergency brake: deployment/pause-payments.sh)
+After=sfx-pool-redis.service sfx-node.service sfx-wallet-rpc.service
+Requires=sfx-pool-redis.service
+[Service]
+Type=simple
+User=sfxpool
+WorkingDirectory=/opt/safex-nodejs-pool
+ExecStart=/usr/bin/node /opt/safex-nodejs-pool/init.js -module=payments
+Restart=always
+RestartSec=15
+TimeoutStopSec=30
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,208 @@
+{
+  "poolHost": "pool.example.com",
+  "coin": "SafexCash",
+  "symbol": "SFX",
+  "coinUnits": 10000000000,
+  "coinDecimalPlaces": 4,
+  "coinDifficultyTarget": 120,
+  "blockchainExplorer": "https://explore.safex.org/#/block/{id}",
+  "transactionExplorer": "https://explore.safex.org/#/tx/{id}",
+  "logging": {
+    "files": {
+      "level": "info",
+      "directory": "logs",
+      "flushInterval": 5
+    },
+    "console": {
+      "level": "info",
+      "colors": true
+    }
+  },
+  "poolServer": {
+    "enabled": true,
+    "mergedMining": false,
+    "clusterForks": 1,
+    "minerTimeout": 240,
+    "sslCert": "/opt/safex-nodejs-pool/ssl/fullchain.pem",
+    "sslKey": "/opt/safex-nodejs-pool/ssl/privkey.pem",
+    "sslCA": "./chain.pem",
+    "ports": [
+      {
+        "port": 5101,
+        "desc": "SFX stratum (plain TCP, difficulty adjusts to your hashrate)"
+      },
+      {
+        "port": 5102,
+        "desc": "SFX stratum over TLS (encrypted)",
+        "tls": true
+      },
+      {
+        "port": 5103,
+        "desc": "SFX stratum over TLS (alternative port)",
+        "tls": true
+      },
+      {
+        "port": 5104,
+        "desc": "SFX stratum over TLS (alternative port)",
+        "tls": true
+      }
+    ],
+    "banning": {
+      "enabled": true,
+      "time": 600,
+      "invalidPercent": 25,
+      "checkThreshold": 30
+    },
+    "slushMining": {
+      "enabled": true,
+      "weight": 86400
+    },
+    "bindIp": "0.0.0.0",
+    "allowIPs": [],
+    "maxConnectionsPerIp": 100,
+    "maxUnauthenticatedPerIp": 10,
+    "loginTimeout": 20,
+    "maxConnections": 3000,
+    "varDiff": {
+      "startDiff": 5000,
+      "minDiff": 1000,
+      "maxDiff": 5000000,
+      "targetTime": 20,
+      "retargetTime": 60,
+      "variancePercent": 30,
+      "maxJump": 100
+    },
+    "jobRefresh": 1000,
+    "poolAddress": "SafexYourPoolWalletMainAddress...",
+    "templateRefresh": 20,
+    "algoName": "rx/sfx"
+  },
+  "payments": {
+    "enabled": true,
+    "interval": 600,
+    "minPayment": 2000000000000,
+    "maxTransactionAmount": 4000000000000,
+    "maxPaymentsPerRound": 8,
+    "minConfirmations": 60,
+    "pendingTimeoutHours": 48,
+    "reserve": 1000000000000,
+    "minerPayFee": true,
+    "dryRun": true,
+    "onlyAccounts": [],
+    "stopFile": "/opt/safex-nodejs-pool/STOP_PAYMENTS"
+  },
+  "blockUnlocker": {
+    "enabled": true,
+    "interval": 60,
+    "depth": 60,
+    "poolFee": 2,
+    "networkFee": 0,
+    "donations": {
+      "Safex5yy5ox1pNxAH8RsbQbCgoZgPmk695Pedf9USsFj3PF7BbyTtVR8NwQ19UuZTYa25MBgwVq98Jrm8ZiUM7iPGGdwVPh1Viy4d": 1
+    }
+  },
+  "api": {
+    "enabled": true,
+    "hashrateWindow": 600,
+    "updateInterval": 5,
+    "bindIp": "127.0.0.1",
+    "port": 8148,
+    "blocks": 30,
+    "payments": 30,
+    "password": "CHANGE_ME_API_PASSWORD",
+    "ssl": false,
+    "sslPort": 8149,
+    "sslCert": "./cert.pem",
+    "sslKey": "./privkey.pem",
+    "sslCA": "./chain.pem",
+    "trustProxyIP": true
+  },
+  "redis": {
+    "host": "127.0.0.1",
+    "port": 6405,
+    "auth": "CHANGE_ME_REDIS_PASSWORD",
+    "db": 0,
+    "cleanupInterval": 15
+  },
+  "prices": {
+    "source": "tradeogre",
+    "currency": "USD"
+  },
+  "charts": {
+    "pool": {
+      "hashrate": {
+        "enabled": true,
+        "updateInterval": 60,
+        "stepInterval": 1800,
+        "maximumPeriod": 86400
+      },
+      "miners": {
+        "enabled": true,
+        "updateInterval": 60,
+        "stepInterval": 1800,
+        "maximumPeriod": 86400
+      },
+      "workers": {
+        "enabled": true,
+        "updateInterval": 60,
+        "stepInterval": 1800,
+        "maximumPeriod": 86400
+      },
+      "difficulty": {
+        "enabled": true,
+        "updateInterval": 1800,
+        "stepInterval": 10800,
+        "maximumPeriod": 604800
+      },
+      "price": {
+        "enabled": true,
+        "updateInterval": 1800,
+        "stepInterval": 10800,
+        "maximumPeriod": 604800
+      },
+      "profit": {
+        "enabled": true,
+        "updateInterval": 1800,
+        "stepInterval": 10800,
+        "maximumPeriod": 604800
+      }
+    },
+    "user": {
+      "hashrate": {
+        "enabled": true,
+        "updateInterval": 180,
+        "stepInterval": 1800,
+        "maximumPeriod": 86400
+      },
+      "worker_hashrate": {
+        "enabled": true,
+        "updateInterval": 60,
+        "stepInterval": 60,
+        "maximumPeriod": 86400
+      },
+      "payments": {
+        "enabled": true
+      }
+    },
+    "blocks": {
+      "enabled": true,
+      "days": 30
+    }
+  },
+  "node": {
+    "host": "127.0.0.1",
+    "port": 17402
+  },
+  "hasher": {
+    "path": "./hasher/rxhash",
+    "args": [
+      "--raw"
+    ],
+    "threads": 2,
+    "light": true
+  },
+  "wallet": {
+    "host": "127.0.0.1",
+    "port": 20194
+  }
+}

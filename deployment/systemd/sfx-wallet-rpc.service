@@ -1,0 +1,15 @@
+[Unit]
+Description=SafexCash pool wallet (wallet-rpc, 127.0.0.1:20194, password-protected)
+After=sfx-node.service
+Requires=sfx-node.service
+
+[Service]
+Type=simple
+User=sfxpool
+ExecStart=/opt/safex/bin/safex-wallet-rpc --wallet-file /opt/safex/wallet/pool --password-file /opt/safex/wallet/password --rpc-bind-ip 127.0.0.1 --rpc-bind-port 20194 --disable-rpc-login --daemon-host 127.0.0.1 --daemon-port 17402 --trusted-daemon --log-file /opt/safex/wallet/wallet-rpc.log --max-log-file-size 0
+Restart=on-failure
+RestartSec=15
+TimeoutStopSec=60
+
+[Install]
+WantedBy=multi-user.target

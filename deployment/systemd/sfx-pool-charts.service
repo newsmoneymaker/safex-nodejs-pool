@@ -1,0 +1,17 @@
+[Unit]
+Description=SafexCash pool: charts data collector (hash rate, difficulty, miners, workers on the home page)
+After=sfx-pool-redis.service sfx-pool-api.service
+Requires=sfx-pool-redis.service
+[Service]
+Type=simple
+User=sfxpool
+WorkingDirectory=/opt/safex-nodejs-pool
+ExecStart=/usr/bin/node /opt/safex-nodejs-pool/init.js -module=chartsDataCollector
+Restart=always
+RestartSec=5
+TimeoutStopSec=30
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

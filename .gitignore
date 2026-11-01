@@ -1,0 +1,10 @@
+node_modules/
+logs/
+config.json
+redis.conf
+redis/
+STOP_PAYMENTS
+*.log
+hasher/rxhash
+hasher/lib/librandomx.a
+*.o
